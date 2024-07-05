@@ -6,7 +6,7 @@ router.post('/',async(req,res)=>{
     try{
         const Data = req.body;
 
-        const newMenu = new menuItems(Data);
+        const newMenu = new MenuItem(Data);
 
         const menu_data=await newMenu.save();
         console.log('Menu  items saved ');
@@ -33,7 +33,7 @@ router.get('/:taste', async(req,res)=>{
     try{
         const taste=req.params.taste;
         if(taste =='sweet'|| taste == 'sour' || taste == 'spicy'){
-        const response =await MenuItem.find({taste:taste});
+        const response =await menuItem.find({taste:taste});
     
      console.log('response fetch');
      res.status(200).json(response);
