@@ -60,7 +60,7 @@ const PORT =process.env.PORT || 3001;
 
 
 app.get('/',(req,res)=>{
-    res.send('Welcome to Dabba this is Menu')
+    res.send('Welcome to Hotel this is Menu')
 });
 
     

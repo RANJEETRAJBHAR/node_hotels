@@ -7,7 +7,7 @@ require('dotenv').config();
 //     //  useUnifiedTopology: true,
 // });
  mongoose.connect('mongodb://localhost:27017/mydatabase')
- .then(() => console.log('MongoDB is connected'))
+ .then(() => console.log('MongoDB is connected '))
  .catch(err => console.error('MongoDB connection error:', err));
 
     const mongoUrl =process.env.MONGODB_URL;
@@ -20,7 +20,7 @@ require('dotenv').config();
 const db=mongoose.connection;
 
 db.on('connected',()=>{
-    console.log("mongodb is connected")
+    console.log("mongodb is connected server")
 });
 
 db.on('error',(err)=>{
