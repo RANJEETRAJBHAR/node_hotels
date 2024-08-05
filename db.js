@@ -10,7 +10,7 @@ require('dotenv').config();
  .then(() => console.log('MongoDB is connected '))
  .catch(err => console.error('MongoDB connection error:', err));
 
-    const mongoUrl =process.env.MONGODB_URL;
+   // const mongoUrl =process.env.MONGODB_URL;
 
 //const mongoUrl = //'mongodb+srv://ranjeetrajbhar:Ranjeet2001@cluster0.ohzsacz.mongodb.net/mydatabase?retryWrites=true&w=majority&appName=Cluster0';
 //const mongoUrl = "mongodb+srv://ranjeetrajbhar:Ranjeet2001@cluster0.ohzsacz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";

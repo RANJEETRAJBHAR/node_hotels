@@ -37,10 +37,13 @@
 // var result = notes.addNumber(age+18,10);
 // console.log(age);
 // console.log('result is now '+result);
+require('dotenv').config();
 const express = require("express");
 const app=express();
 const db =require('./db');
-require('dotenv').config();
+//require('dotenv').config();
+const passport =require('./auth');
+
 
 
 
@@ -56,10 +59,40 @@ const PORT =process.env.PORT || 3001;
 // Example of requiring person module
 
 //const person = require('./model/Person');
+// Middleware Function
+const logRequest = (req,res,next)=>{
+    console.log(` ${new Date().toLocaleString()} Request Made To : ${req.originalUrl}`);
+    next();
+}
 
+ app.use(logRequest);
+//authentication Start
+ //passport.use(new LocalStrategy(async(Username ,password, done)=>{
 
+    //authentication logic here 
+//     try{
+//         console.log('Received data:' , Username,password);
+//         const user = await Person.findOne({username:Username});
+//         if(!user)
+//             return done(null , false,{message:'Incorrect username'});
+//         const isPasswordMatch=user.password === password ? true : false;
+//     if(isPasswordMatch){
+//         return done(null , user);
+//     }
+//     else{
+//         return done(null, false,{message:'Password Incorrect'});
+//     }
 
-app.get('/',(req,res)=>{
+//     }catch(err){
+//         return(err);
+
+//     }
+//  }));
+
+ app.use(passport.initialize());
+const localAutMiddleware = passport.authenticate('local',{session: false});
+
+app.get('/' ,function(req,res){
     res.send('Welcome to Hotel this is Menu')
 });
 
@@ -144,8 +177,8 @@ app.get('/',(req,res)=>{
 const personRoutes =require('./routes/personRoutes');
 const menuRoutes =require('./routes/menuRoutes')
 
-app.use('/person',personRoutes);
-app.use('/menu', menuRoutes);
+app.use('/person',/*localAutMiddleware,*/personRoutes);
+app.use('/menu',menuRoutes);
 
 
 //const PORT =process.env.PORT || 3001;
